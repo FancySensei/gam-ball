@@ -5,7 +5,9 @@ Do you have your faith on your balls? Put your money in!
 ### Where to play? ###
 
 I've deployed two versions on my website:
+
 [GamBall -- Release Version](http://rolloliu.com/gamball/)
+
 [GamBall -- Debug Version (can use debug keys aka. cheating keys)](http://rolloliu.com/gamball-debug/)
 
 ### How to Set Up ###
@@ -21,11 +23,12 @@ I've deployed two versions on my website:
 
 ### Debug Keys ###
 
-"]" -- Toogle step by step physics.
-"[" -- Next frame of the physics calculation. NOTE. It's not "step" but "frame" (we don't update graphic transforms on each step, only each frame)
+ * "]" -- Toogle step by step physics.
+ * "[" -- Next frame of the physics calculation. NOTE. It's not "step" but "frame" (we don't update graphic transforms on each step, only each frame)
 
 
 ### Additional Information ###
 
 IDE: HaxeDevelop, Visual Studio Code
+
 Softwares: Photoshop, Git BASH, TortoiseGit
