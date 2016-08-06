@@ -1,0 +1,11 @@
+# local build files
+bin/
+
+# source files i.e. PSD files and WAV files
+source_files/
+
+# node js moduels
+node_modules/
+
+# haxe project file (HaxeDevelop)
+*.hxproj
