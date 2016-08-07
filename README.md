@@ -23,5 +23,6 @@ I've deployed two versions on my website:
 
 ### Debug Keys ###
 
- * "]" -- Toogle step by step physics.
- * "[" -- Next frame of the physics calculation. Note: It's not "step" but "frame" (we don't update graphic transforms on each step, only each frame)
+ * "5" -- Toogle physics debug draw.
+ * "[" -- Toogle step by step physics.
+ * "]" -- Next frame of the physics calculation. Note: It's not "one step" but actually "one frame" (we don't update graphic transforms on each step, only on each frame)
