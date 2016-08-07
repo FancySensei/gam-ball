@@ -13,9 +13,9 @@ class Button extends GameObject
 	
 	private var base:Graphics;
 	private var surface:Graphics;
-	private var callback:Button->Void;
+	private var callback:Void->Void;
 	
-	public function new(config:ButtonConfig, callback:Button->Void)
+	public function new(config:ButtonConfig, callback:Void->Void)
 	{
 		super();
 		this.config = config;
@@ -65,7 +65,7 @@ class Button extends GameObject
 		if (!isCooldown)
 		{
 			isCooldown = true;
-			callback(this);
+			callback();
 			Actuate.timer(config.cooldown).onComplete(function():Void
 			{
 				isCooldown = false;

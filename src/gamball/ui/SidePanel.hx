@@ -17,7 +17,7 @@ class SidePanel extends GameObject
 		super();
 		this.stage = stage;
 		
-		panelWidth = GamBall.screenWidth * 0.35;
+		panelWidth = GamBall.screenHeight * 0.41;
 		x = GamBall.screenWidth - panelWidth;
 		y = -1; // extra padding
 		
@@ -28,22 +28,28 @@ class SidePanel extends GameObject
 		addChild(bg);
 		
 		currencyPanel = new CurrencyPanel(stage);
-		currencyPanel.x = Math.round(panelWidth * 0.5);
-		currencyPanel.y = 80;
+		currencyPanel.position.set(Math.round(panelWidth * 0.5), 80);
 		addChildWithUpdate(currencyPanel);
 		
-		var buttonConfig:ButtonConfig =
+		var ballBtn1 = new BallButton("ball_candy.png", 3, function():Void
 		{
-			width: 200,
-			height: 50,
-			surfaceColour: 0xFFFF00,
-			baseColour: 0xD78C02,
-			springHeight: 15,
-			cooldown: 0.2
-		}
-		var btn = new Button(buttonConfig, null);
-		btn.x = 100;
-		btn.y = 600;
-		addChild(btn);
+			
+		});
+		ballBtn1.position.set(currencyPanel.x, GamBall.screenHeight * 0.5);
+		addChild(ballBtn1);
+		
+		var ballBtn2 = new BallButton("ball_8.png", 8, function():Void
+		{
+			
+		});
+		ballBtn2.position.set(currencyPanel.x, ballBtn1.y + 110);
+		addChild(ballBtn2);
+		
+		var ballBtn3 = new BallButton("ball_pokemon.png", 25, function():Void
+		{
+			
+		});
+		ballBtn3.position.set(currencyPanel.x, ballBtn2.y + 110);
+		addChild(ballBtn3);
 	}
 }

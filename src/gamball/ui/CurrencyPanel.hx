@@ -26,7 +26,7 @@ class CurrencyPanel extends GameObject
 		lastCurrency = stage.currency;
 	}
 	
-	private static function getCurrencyFormat(value:Int):String
+	public static function getCurrencyFormat(value:Int):String
 	{
 		var valueStr = Std.string(value);
 		var result = "";
