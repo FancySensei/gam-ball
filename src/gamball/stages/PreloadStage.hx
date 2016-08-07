@@ -44,7 +44,7 @@ class PreloadStage extends Stage
 	
 	private function startGameStage():Void
 	{
-		//GamBall.instance.changeStage();
+		GamBall.instance.changeStage(new GameStage());
 	}
 	
 	override public function destroy():Void 
