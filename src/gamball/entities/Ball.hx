@@ -10,7 +10,7 @@ import pixi.core.sprites.Sprite;
 class Ball extends PhysicObject
 {
 	static public inline var PATH:String = "assets/textures/sprites/";
-	static public inline var BALL_RADIUS:Int = 50;
+	static public inline var BALL_RADIUS:Int = 35;
 	
 	private var sprite:Sprite;
 	

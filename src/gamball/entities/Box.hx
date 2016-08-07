@@ -4,13 +4,14 @@ import nape.geom.Vec2;
 import nape.phys.BodyType;
 import nape.phys.Material;
 import nape.shape.Polygon;
+import pixi.core.graphics.Graphics;
 
 class Box extends PhysicObject
 {
 	private var bodyWidth:Float;
 	private var bodyHeight:Float;
 	
-	public function new(x:Float, y:Float, width:Float, height:Float)
+	public function new(x:Float, y:Float, width:Float, height:Float, colour:Int)
 	{
 		super(BodyType.STATIC, Vec2.get(x, y));
 		this.bodyWidth = width;
@@ -18,6 +19,12 @@ class Box extends PhysicObject
 		
 		body.shapes.add(new Polygon(Polygon.box(bodyWidth, bodyHeight, true), Material.steel()));
 		body.space = physics.worldSpace;
+		
+		var box = new Graphics();
+		box.beginFill(colour);
+		box.drawRect( -bodyWidth / 2, -bodyHeight / 2, bodyWidth, bodyHeight);
+		box.endFill();
+		addChild(box);
 		
 		#if debug
 		addDebugDraw();
