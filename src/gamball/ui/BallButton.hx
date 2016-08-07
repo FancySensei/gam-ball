@@ -13,8 +13,8 @@ class BallButton extends Button
 			height: 75,
 			surfaceColour: 0xFF3297,
 			baseColour: 0xB8095F,
-			springHeight: 16,
-			cooldown: 0.1
+			springHeight: 18,
+			cooldown: 0.15
 		}
 		
 		super(btnConfig, callback);

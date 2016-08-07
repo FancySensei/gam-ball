@@ -50,9 +50,11 @@ class GameStage extends Stage
 	{
 		super.update();
 		
+		#if debug
 		if (Input.isKeyUp(KeyCode.FIVE))
 		{
 			physics.debugDraw.visible = !physics.debugDraw.visible;
 		}
+		#end
 	}
 }

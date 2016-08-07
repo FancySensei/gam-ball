@@ -39,7 +39,7 @@ class SidePanel extends GameObject
 				stage.generateBall(ballConfig);
 			});
 			ballBtn.position.set(currencyPanel.x, btnY);
-			btnY += 110;
+			btnY += 115;
 			addChild(ballBtn);
 		}
 	}
