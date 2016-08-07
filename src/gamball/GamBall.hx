@@ -1,6 +1,7 @@
 package gamball;
 import engine.Engine;
 import engine.entities.Stage;
+import gamball.stages.PreloadStage;
 import gamball.stages.TestStage;
 import pixi.core.renderers.Detector.RenderingOptions;
 
@@ -52,7 +53,7 @@ class GamBall
 	
 	public function start():Void
 	{
-		engine.start(new TestStage(), targetFPS);
+		engine.start(new PreloadStage(), targetFPS);
 	}
 	
 	public function changeStage(stage:Stage):Void

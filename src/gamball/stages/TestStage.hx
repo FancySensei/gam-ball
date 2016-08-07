@@ -20,7 +20,5 @@ class TestStage extends Stage
 			bitmapText.y = 300;
 			addChild(bitmapText);
 		});
-		
-		
 	}
 }
