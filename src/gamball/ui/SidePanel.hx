@@ -31,25 +31,16 @@ class SidePanel extends GameObject
 		currencyPanel.position.set(Math.round(panelWidth * 0.5), 80);
 		addChildWithUpdate(currencyPanel);
 		
-		var ballBtn1 = new BallButton("ball_candy.png", 3, function():Void
+		var btnY = Math.round(GamBall.screenHeight * 0.5);
+		for (ballConfig in stage.gameConfig.ballConfigs)
 		{
-			
-		});
-		ballBtn1.position.set(currencyPanel.x, GamBall.screenHeight * 0.5);
-		addChild(ballBtn1);
-		
-		var ballBtn2 = new BallButton("ball_8.png", 8, function():Void
-		{
-			
-		});
-		ballBtn2.position.set(currencyPanel.x, ballBtn1.y + 110);
-		addChild(ballBtn2);
-		
-		var ballBtn3 = new BallButton("ball_pokemon.png", 25, function():Void
-		{
-			
-		});
-		ballBtn3.position.set(currencyPanel.x, ballBtn2.y + 110);
-		addChild(ballBtn3);
+			var ballBtn = new BallButton(ballConfig.texture, ballConfig.cost, function():Void
+			{
+				stage.generateBall(ballConfig);
+			});
+			ballBtn.position.set(currencyPanel.x, btnY);
+			btnY += 110;
+			addChild(ballBtn);
+		}
 	}
 }

@@ -1,11 +1,10 @@
 package gamball.ui;
+import gamball.entities.Ball;
 import gamball.ui.Button.ButtonConfig;
 import pixi.core.sprites.Sprite;
 
 class BallButton extends Button
 {
-	static private inline var PATH:String = "assets/textures/sprites/";
-	
 	public function new(fileName:String, cost:Int, callback:Void->Void)
 	{
 		var btnConfig:ButtonConfig =
@@ -20,7 +19,7 @@ class BallButton extends Button
 		
 		super(btnConfig, callback);
 		
-		var icon = Sprite.fromImage(PATH + fileName, false);
+		var icon = Sprite.fromImage(Ball.PATH + fileName, false);
 		icon.anchor.set(0.5, 0.5);
 		icon.scale.set(0.5, 0.5);
 		icon.position.set(45, Math.round(btnConfig.height / 2));
@@ -30,5 +29,4 @@ class BallButton extends Button
 		costText.position.set(125, icon.y);
 		surface.addChild(costText);
 	}
-	
 }

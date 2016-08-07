@@ -33,18 +33,19 @@ class PreloadStage extends Stage
 	
 	private function loadGameAssets():Void
 	{
-		onLoadComplete();
+		GameStage.load(function(gameStage:GameStage):Void
+		{
+			onLoadComplete(function():Void
+			{
+				GamBall.instance.changeStage(gameStage);
+			});
+		});
 	}
 	
-	private function onLoadComplete():Void
+	private function onLoadComplete(onAnimationComplete:Void->Void):Void
 	{
 		Actuate.tween(loadingText, 0.5, {alpha: 0}).ease(Linear.easeNone);
-		Actuate.tween(loadingText.scale, 0.8, {x: 2.5, y: 2.5}).ease(Expo.easeOut).onComplete(startGameStage);
-	}
-	
-	private function startGameStage():Void
-	{
-		GamBall.instance.changeStage(new GameStage());
+		Actuate.tween(loadingText.scale, 0.8, {x: 2.5, y: 2.5}).ease(Expo.easeOut).onComplete(onAnimationComplete);
 	}
 	
 	override public function destroy():Void 
