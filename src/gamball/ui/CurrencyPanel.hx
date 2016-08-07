@@ -19,7 +19,7 @@ class CurrencyPanel extends GameObject
 		panel.anchor.set(0.5, 0.5);
 		addChild(panel);
 		
-		currencyText = Fonts.getFancyText(getCurrencyFormat(stage.currency), 32, Fonts.CALIBRI_32_BOLD);
+		currencyText = Fonts.getFancyText(getCurrencyFormat(stage.currency), 32, Fonts.CONSOLAS_64_BOLD);
 		currencyText.x = 20;
 		addChild(currencyText);
 		

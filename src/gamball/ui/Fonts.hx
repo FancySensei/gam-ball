@@ -7,6 +7,7 @@ class Fonts
 {
 	static public inline var CALIBRI_32_BOLD:String = "Calibri 32 Bold";
 	static public inline var CALIBRI_64_BOLD:String = "Calibri 64 Bold";
+	static public inline var CONSOLAS_64_BOLD:String = "Consolas 64 Bold";
 	static public inline var CONSOLAS_NUMBERS_72_BOLD:String = "Consolas Numbers 72 Bold";
 	static public inline var LUCIDA_CONSOLE_14_BOLD:String = "Lucida Console 14 Bold";
 	
@@ -19,6 +20,7 @@ class Fonts
 		new Loader()
 		.add("assets/fonts/calibri_32_bold.fnt", loadOption)
 		.add("assets/fonts/calibri_64_bold.fnt", loadOption)
+		.add("assets/fonts/consolas_64_bold.fnt", loadOption)
 		.add("assets/fonts/consolas_numbers_72_bold.fnt", loadOption)
 		.add("assets/fonts/lucida_console_14_bold.fnt", loadOption)
 		.load(callback);
