@@ -6,9 +6,13 @@ Do you have your faith on your balls? Put your money in!
 
 I've deployed two versions on my website:
 
-[GamBall -- Release Version](http://rolloliu.com/gamball/)
+[GamBall -- Release Version (High Graphic Quality)](http://rolloliu.com/gamball/?quality=high)
 
-[GamBall -- Debug Version (can use debug keys aka. cheating keys)](http://rolloliu.com/gamball-debug/)
+[GamBall -- Release Version (Medium Graphic Quality)](http://rolloliu.com/gamball/)
+
+[GamBall -- Release Version (Low Graphic Quality)](http://rolloliu.com/gamball/?quality=low)
+
+[GamBall -- Development Version (can use debug keys aka. cheating keys)](http://rolloliu.com/gamball-dev/)
 
 ### How to Set Up ###
 
@@ -26,3 +30,4 @@ I've deployed two versions on my website:
  * "5" -- Toogle physics debug draw.
  * "[" -- Toogle step by step physics.
  * "]" -- Next frame of the physics calculation. Note: It's not "one step" but actually "one frame" (we don't update graphic transforms on each step, only on each frame)
+ * "?quality" -- Query parameters for graphic quality, can be "high", "medium" or "low".
