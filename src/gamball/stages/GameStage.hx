@@ -48,7 +48,7 @@ class GameStage extends Stage
 		{
 			currency -= ballConfig.cost;
 			var ball = new Ball(MathR.randomFloat(-50, 50), -1200, ballConfig);
-			gameplayLayer.addChildWithUpdate(ball, false, 0);
+			gameplayLayer.addChildWithUpdate(ball);
 		}
 	}
 	

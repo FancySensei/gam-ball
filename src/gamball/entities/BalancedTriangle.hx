@@ -16,8 +16,9 @@ class BalancedTriangle extends PhysicObject
 	{
 		super(BodyType.STATIC, Vec2.get(x, y));
 		
-		var polys = Polygon.regular(xRad, yRad, 3, rotation);
+		var polys = Polygon.regular(xRad, yRad, 3, -MathR.PI_HALF + rotation);
 		body.shapes.add(new Polygon(polys, Material.steel()));
+		body.position.y -= yRad / 2;
 		body.space = physics.worldSpace;
 		
 		polyData = Utils.ConvertVec2Poly(polys);

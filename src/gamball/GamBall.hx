@@ -32,7 +32,7 @@ class GamBall
 		
 		var options:RenderingOptions =
 		{
-			backgroundColor: 0x54315B,
+			backgroundColor: 0x282828,
 			transparent: false,
 			autoResize: false,
 			resolution: 1.0,

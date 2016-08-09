@@ -22,7 +22,7 @@ class SidePanel extends GameObject
 		y = -1; // extra padding
 		
 		bg = new Graphics();
-		bg.beginFill(0x000000, 0.65);
+		bg.beginFill(0x41454D);
 		bg.drawRect(0, 0, panelWidth + 1, GamBall.screenHeight + 2); // with extra paddings
 		bg.endFill();
 		addChild(bg);

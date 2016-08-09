@@ -4,8 +4,10 @@ import engine.entities.GameObject;
 import engine.entities.IGameObject;
 import engine.utils.MathR;
 import gamball.entities.BalancedTriangle;
+import gamball.entities.BouncyBell;
 import gamball.entities.StripedRect;
 import gamball.stages.GameStage;
+import pixi.core.graphics.Graphics;
 
 class Level implements IGameObject
 {
@@ -15,11 +17,11 @@ class Level implements IGameObject
 	{
 		this.stage = stage;
 		
+		buildLevel();
+		
 		#if debug
 		drawDebugMeasurers();
 		#end
-		
-		buildLevel();
 	}
 	
 	private function drawDebugMeasurers()
@@ -42,20 +44,37 @@ class Level implements IGameObject
 	
 	private function buildLevel()
 	{
-		// left
-		var rect = new StripedRect(-600, -1000, 2000, 1000, MathR.PI_HALF);
-		stage.gameplayLayer.addChildWithUpdate(rect);
+		// background
+		var bg = new Graphics();
+		bg.beginFill(0x8DFFA5);
+		bg.drawRect( -1000, -2000, 2000, 2000);
+		bg.endFill();
+		stage.gameplayLayer.addChildAt(bg, 0);
 		
-		// right
-		rect = new StripedRect(600, -1000, 2000, 1000, -MathR.PI_HALF);
-		stage.gameplayLayer.addChildWithUpdate(rect);
-		
-		// right
-		rect = new StripedRect(0, -200, 1000, 100, 0);
-		stage.gameplayLayer.addChildWithUpdate(rect);
-		
-		var tri = new BalancedTriangle(0, -500, 300, 100, -MathR.PI_HALF);
+		// bottom triangles
+		var tri = new BalancedTriangle(-200, -200, 150, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
+		
+		tri = new BalancedTriangle(200, -200, 150, 80);
+		stage.gameplayLayer.addChildWithUpdate(tri);
+		
+		tri = new BalancedTriangle(-600, -200, 150, 80);
+		stage.gameplayLayer.addChildWithUpdate(tri);
+		
+		tri = new BalancedTriangle(600, -200, 150, 80);
+		stage.gameplayLayer.addChildWithUpdate(tri);
+		
+		// Bells
+		var bell = new BouncyBell(0, -600, 60);
+		stage.gameplayLayer.addChildWithUpdate(bell);
+		
+		
+		// left and right wall
+		var rect = new StripedRect(-600, -1000, 2000, 500, MathR.PI_HALF);
+		stage.gameplayLayer.addChildWithUpdate(rect);
+		
+		rect = new StripedRect(600, -1000, 2000, 500, -MathR.PI_HALF);
+		stage.gameplayLayer.addChildWithUpdate(rect);
 	}
 	
 	public function fixedUpdate():Void {}
