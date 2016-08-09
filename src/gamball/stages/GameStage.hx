@@ -23,6 +23,7 @@ class GameStage extends Stage
 	public var balls(default, null):Array<Ball> = [];
 	public var bonusArea(default, null):BonusArea;
 	
+	private var cashSFX:WaudSound;
 	private var ballSpawnPosX:Float = -550;
 	
 	private function new(gameConfig:GameConfig)
@@ -38,6 +39,14 @@ class GameStage extends Stage
 		
 		uiLayer.addChildWithUpdate(sidePanel = new SidePanel(this));
 		gameplayLayer.addChild(physics.debugDraw);
+		
+		var ext = Waud.isMP3Supported() ? ".mp3" : ".ogg";
+		var option:WaudSoundOptions = {
+			loop: false,
+			autoplay: false,
+			volume: 0.7
+		};
+		cashSFX = new WaudSound("assets/sfx/" + "cash_bell" + ext, option);
 		
 		camera.follow(new Point(), new Point(sidePanel.panelWidth * 0.5, -GamBall.screenHeight * 0.5));
 		camera.zoom = 0.5;
@@ -66,6 +75,7 @@ class GameStage extends Stage
 	public function rewardCurrency(cost:Int, bonus:Int):Void
 	{
 		currency += cost * bonus;
+		cashSFX.play();
 	}
 	
 	override public function update():Void 

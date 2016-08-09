@@ -11,15 +11,25 @@ class Button extends GameObject
 	public var isCooldown(default, null):Bool = false;
 	public var config(default, null):ButtonConfig;
 	
+	private var callback:Void->Void;
+	
 	private var base:Graphics;
 	private var surface:Graphics;
-	private var callback:Void->Void;
+	private var sfx:WaudSound;
 	
 	public function new(config:ButtonConfig, callback:Void->Void)
 	{
 		super();
 		this.config = config;
 		this.callback = callback;
+		
+		var ext = Waud.isMP3Supported() ? ".mp3" : ".ogg";
+		var option:WaudSoundOptions = {
+			loop: false,
+			autoplay: false,
+			volume: 0.7
+		};
+		sfx = new WaudSound("assets/sfx/" + "button_click" + ext, option);
 		
 		base = new Graphics();
 		var baseHeight = Math.floor(config.height / 2);
@@ -66,6 +76,7 @@ class Button extends GameObject
 		{
 			isCooldown = true;
 			callback();
+			sfx.play();
 			Actuate.timer(config.cooldown).onComplete(function():Void
 			{
 				isCooldown = false;
