@@ -112,4 +112,11 @@ class PhysicObject extends GameObject
 			debugDraw.rotation = body.rotation;
 		}
 	}
+	
+	override public function destroy():Void 
+	{
+		removeDebugDraw();
+		body.space = null;
+		super.destroy();
+	}
 }

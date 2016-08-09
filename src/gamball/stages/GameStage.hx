@@ -13,10 +13,14 @@ import pixi.core.math.Point;
 
 class GameStage extends Stage
 {
+	static private inline var WORLD_BOTTOM:Float = 100;
+	
 	public var currency(default, null):Int = 2500;
 	public var gameConfig(default, null):GameConfig;
 	public var level(default, null):Level;
 	public var sidePanel(default, null):SidePanel;
+	
+	private var balls:Array<Ball> = [];
 	
 	private function new(gameConfig:GameConfig)
 	{
@@ -47,7 +51,8 @@ class GameStage extends Stage
 		if (currency >= ballConfig.cost)
 		{
 			currency -= ballConfig.cost;
-			var ball = new Ball(MathR.randomFloat(-50, 50), -1200, ballConfig);
+			var ball = new Ball(MathR.randomFloat( -50, 50), -1200, ballConfig);
+			balls.push(ball);
 			gameplayLayer.addChildWithUpdate(ball);
 		}
 	}
@@ -55,6 +60,20 @@ class GameStage extends Stage
 	override public function update():Void 
 	{
 		super.update();
+		
+		var removeList:Array<Int> = [];
+		for (i in 0...balls.length)
+		{
+			if (balls[i].y > WORLD_BOTTOM)
+			{
+				gameplayLayer.removeChildWithUpdate(balls[i]);
+				removeList.push(i);
+			}
+		}
+		for (index in removeList)
+		{
+			balls.splice(index, 1);
+		}
 		
 		#if debug
 		if (Input.isKeyUp(KeyCode.FIVE))
