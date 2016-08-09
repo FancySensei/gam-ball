@@ -7,7 +7,7 @@ import engine.utils.MathR;
 import gamball.configs.GameConfig;
 import gamball.entities.Ball;
 import gamball.entities.Ball.BallConfig;
-import gamball.entities.Box;
+import gamball.levels.Level;
 import gamball.ui.SidePanel;
 import pixi.core.math.Point;
 
@@ -15,6 +15,8 @@ class GameStage extends Stage
 {
 	public var currency(default, null):Int = 2500;
 	public var gameConfig(default, null):GameConfig;
+	public var level(default, null):Level;
+	public var sidePanel(default, null):SidePanel;
 	
 	private function new(gameConfig:GameConfig)
 	{
@@ -23,14 +25,13 @@ class GameStage extends Stage
 		
 		physics.worldSpace.gravity.y = Physics.meterToPixel(15.0);
 		
-		uiLayer.addChildWithUpdate(new SidePanel(this));
+		addChildWithUpdate(level = new Level(this));
+		
+		uiLayer.addChildWithUpdate(sidePanel = new SidePanel(this));
 		gameplayLayer.addChild(physics.debugDraw);
 		
-		camera.follow(new Point(), new Point(0, -GamBall.screenHeight * 0.5));
+		camera.follow(new Point(), new Point(sidePanel.panelWidth * 0.5, -GamBall.screenHeight * 0.5));
 		camera.zoom = 0.5;
-		
-		var box = new Box(0, 0, 2000, 50, 0xFF7591);
-		gameplayLayer.addChildWithUpdate(box);
 	}
 	
 	static public function load(callback:GameStage->Void):Void

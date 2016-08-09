@@ -11,8 +11,8 @@ class BallButton extends Button
 		{
 			width: 180,
 			height: 75,
-			surfaceColour: 0xFF3297,
-			baseColour: 0xB8095F,
+			surfaceColour: 0xFFCE25,
+			baseColour: 0xEBA205,
 			springHeight: 18,
 			cooldown: 0.15
 		}

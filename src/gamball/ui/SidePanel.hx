@@ -7,9 +7,9 @@ import pixi.core.graphics.Graphics;
 class SidePanel extends GameObject
 {
 	public var currencyPanel(default, null):CurrencyPanel;
+	public var panelWidth(default, null):Float;
 	
 	private var stage:GameStage;
-	private var panelWidth:Float;
 	private var bg:Graphics;
 	
 	public function new(stage:GameStage)
