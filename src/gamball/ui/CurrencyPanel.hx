@@ -2,6 +2,9 @@ package gamball.ui;
 import engine.entities.FancyBitmapText;
 import engine.entities.GameObject;
 import gamball.stages.GameStage;
+import motion.Actuate;
+import motion.easing.Cubic;
+import motion.easing.Linear;
 import pixi.core.sprites.Sprite;
 
 class CurrencyPanel extends GameObject
@@ -45,11 +48,35 @@ class CurrencyPanel extends GameObject
 		return valueStr;
 	}
 	
+	private function addFloatingText(diff:Int):Void
+	{
+		var text:FancyBitmapText;
+		
+		if (diff < 0)
+		{
+			text = Fonts.getFancyText(getCurrencyFormat(diff), 32 , Fonts.CONSOLAS_64_BOLD, 0xFF1717);
+		}
+		else
+		{
+			text = Fonts.getFancyText("+" + getCurrencyFormat(diff), 52 , Fonts.CONSOLAS_64_BOLD, 0x04FF17);
+		}
+		text.position.set(currencyText.x, 30);
+		addChild(text);
+		
+		Actuate.tween(text, 1.2, {alpha: 0}).ease(Linear.easeNone);
+		Actuate.tween(text.position, 1.2, {y: 100}).ease(Cubic.easeOut).onComplete(function():Void
+		{
+			removeChild(text);
+			text.destroy();
+		});
+	}
+	
 	override public function update():Void 
 	{
 		if (lastCurrency != stage.currency)
 		{
 			currencyText.text = getCurrencyFormat(stage.currency);
+			addFloatingText(stage.currency - lastCurrency);
 			lastCurrency = stage.currency;
 		}
 	}

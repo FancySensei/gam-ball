@@ -1,5 +1,4 @@
 package gamball.levels;
-import engine.debug.Measurer;
 import engine.entities.GameObject;
 import engine.entities.IGameObject;
 import engine.utils.MathR;
@@ -20,28 +19,6 @@ class Level implements IGameObject
 		this.stage = stage;
 		
 		buildLevel();
-		
-		#if debug
-		drawDebugMeasurers();
-		#end
-	}
-	
-	private function drawDebugMeasurers()
-	{
-		var measurer = Measurer.colouredCentred();
-		stage.gameplayLayer.addChild(measurer);
-		
-		measurer = Measurer.colouredCentred();
-		measurer.position.set( -500, -1000);
-		stage.gameplayLayer.addChild(measurer);
-		
-		measurer = Measurer.colouredCentred();
-		measurer.position.set( 500, -1000);
-		stage.gameplayLayer.addChild(measurer);
-		
-		measurer = Measurer.colouredCentred();
-		measurer.position.set( 0, -500);
-		stage.gameplayLayer.addChild(measurer);
 	}
 	
 	private function buildLevel()
