@@ -5,6 +5,8 @@ import engine.entities.IGameObject;
 import engine.utils.MathR;
 import gamball.entities.BalancedTriangle;
 import gamball.entities.BouncyBell;
+import gamball.entities.RotatorPlank;
+import gamball.entities.SineRotator;
 import gamball.entities.StripedRect;
 import gamball.stages.GameStage;
 import pixi.core.graphics.Graphics;
@@ -51,21 +53,44 @@ class Level implements IGameObject
 		bg.endFill();
 		stage.gameplayLayer.addChildAt(bg, 0);
 		
+		// top triangles
+		var tri = new BalancedTriangle(-600, -1300, 450, 60);
+		stage.gameplayLayer.addChildWithUpdate(tri);
+		
+		tri = new BalancedTriangle(600, -1300, 450, 60);
+		stage.gameplayLayer.addChildWithUpdate(tri);
+		
 		// bottom triangles
-		var tri = new BalancedTriangle(-200, -100, 150, 80);
+		tri = new BalancedTriangle(-200, -100, 140, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 		
-		tri = new BalancedTriangle(200, -100, 150, 80);
+		tri = new BalancedTriangle(200, -100, 140, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 		
-		tri = new BalancedTriangle(-600, -100, 150, 80);
+		tri = new BalancedTriangle(-600, -100, 140, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 		
-		tri = new BalancedTriangle(600, -100, 150, 80);
+		tri = new BalancedTriangle(600, -100, 140, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
+		
+		// Rotators
+		var rotator = new RotatorPlank(-360, -550, 250, 50, MathR.PI);
+		stage.gameplayLayer.addChildWithUpdate(rotator);
+		
+		rotator = new RotatorPlank(360, -550, 250, 50, -MathR.PI);
+		stage.gameplayLayer.addChildWithUpdate(rotator);
+		
+		var sineRotator = new SineRotator(0, -1150, 200, 60, MathR.PI_2);
+		stage.gameplayLayer.addChildWithUpdate(sineRotator);
 		
 		// Bells
-		var bell = new BouncyBell(0, -600, 60);
+		var bell = new BouncyBell(0, -400, 60);
+		stage.gameplayLayer.addChildWithUpdate(bell);
+		
+		var bell = new BouncyBell(-270, -950, 60);
+		stage.gameplayLayer.addChildWithUpdate(bell);
+		
+		var bell = new BouncyBell(270, -950, 60);
 		stage.gameplayLayer.addChildWithUpdate(bell);
 		
 		

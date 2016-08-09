@@ -23,6 +23,8 @@ class GameStage extends Stage
 	public var balls(default, null):Array<Ball> = [];
 	public var bonusArea(default, null):BonusArea;
 	
+	private var ballSpawnPosX:Float = -550;
+	
 	private function new(gameConfig:GameConfig)
 	{
 		super();
@@ -53,8 +55,9 @@ class GameStage extends Stage
 	{
 		if (currency >= ballConfig.cost)
 		{
+			ballSpawnPosX *= -1.0;
 			currency -= ballConfig.cost;
-			var ball = new Ball(MathR.randomFloat( -50, 50), -1200, ballID, ballConfig);
+			var ball = new Ball(ballSpawnPosX, -1500, ballID, ballConfig);
 			balls.push(ball);
 			gameplayLayer.addChildWithUpdate(ball);
 		}
