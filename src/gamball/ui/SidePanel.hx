@@ -1,5 +1,6 @@
 package gamball.ui;
 import engine.entities.GameObject;
+import gamball.entities.Ball;
 import gamball.stages.GameStage;
 import gamball.ui.Button.ButtonConfig;
 import pixi.core.graphics.Graphics;
@@ -32,16 +33,21 @@ class SidePanel extends GameObject
 		addChildWithUpdate(currencyPanel);
 		
 		var btnY = Math.round(GamBall.screenHeight * 0.5);
-		for (ballID in stage.gameConfig.ballConfigs.keys())
+		createBallButton(Ball.BALL_CANDY_ID, btnY);
+		btnY += 115;
+		createBallButton(Ball.BALL_8_ID, btnY);
+		btnY += 115;
+		createBallButton(Ball.BALL_POKEMON_ID, btnY);
+	}
+	
+	private function createBallButton(id:String, y:Float)
+	{
+		var ballConfig = stage.gameConfig.ballConfigs.get(id);
+		var ballBtn = new BallButton(ballConfig.texture, ballConfig.cost, function():Void
 		{
-			var ballConfig = stage.gameConfig.ballConfigs.get(ballID);
-			var ballBtn = new BallButton(ballConfig.texture, ballConfig.cost, function():Void
-			{
-				stage.generateBall(ballID, ballConfig);
-			});
-			ballBtn.position.set(currencyPanel.x, btnY);
-			btnY += 115;
-			addChild(ballBtn);
-		}
+			stage.generateBall(id, ballConfig);
+		});
+		ballBtn.position.set(currencyPanel.x, y);
+		addChild(ballBtn);
 	}
 }

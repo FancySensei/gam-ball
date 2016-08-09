@@ -11,8 +11,12 @@ class Ball extends PhysicObject
 {
 	static public inline var PATH:String = "assets/textures/sprites/";
 	static public inline var BALL_RADIUS:Int = 40;
+	static public inline var BALL_CANDY_ID:String = "candy";
+	static public inline var BALL_8_ID:String = "8";
+	static public inline var BALL_POKEMON_ID:String = "pokemon";
 	
 	public var id(default, null):String;
+	public var hasScored(default, default):Bool = false;
 	
 	private var sprite:Sprite;
 	

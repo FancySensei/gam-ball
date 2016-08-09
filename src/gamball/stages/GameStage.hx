@@ -30,9 +30,9 @@ class GameStage extends Stage
 		
 		physics.worldSpace.gravity.y = Physics.meterToPixel(15.0);
 		
-		addChildWithUpdate(level = new Level(this));
-		
 		addChildWithUpdate(bonusArea = new BonusArea(this));
+		
+		addChildWithUpdate(level = new Level(this));
 		
 		uiLayer.addChildWithUpdate(sidePanel = new SidePanel(this));
 		gameplayLayer.addChild(physics.debugDraw);
