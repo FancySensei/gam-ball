@@ -19,22 +19,22 @@ class BonusArea implements IGameObject
 	{
 		this.stage = stage;
 		
-		createBallSensor(Ball.BALL_CANDY_ID, -600, 600, 0x4D90FF, "bonus:x", onNormalAreaHit);
-		createBallSensor(Ball.BALL_8_ID, 0, 400, 0xBB4FFF, "bonus:x", onNormalAreaHit);
-		createBallSensor(Ball.BALL_POKEMON_ID, 400, 200, 0xFF7A22, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_CANDY_ID, -600, 605, 0x4D90FF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_8_ID, 0, 405, 0xBB4FFF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_POKEMON_ID, 400, 205, 0xFF7A22, "bonus:x", onNormalAreaHit);
 		
 		var crown = Sprite.fromImage("assets/textures/sprites/crown.png", false);
-		var sensor = new BonusSensor(null, 70, 100, 0xFF2740, crown, null, onCrownHit);
+		var sensor = new BonusSensor(null, 72, 100, 0xFF2740, crown, null, onCrownHit);
 		sensor.position.set(600, POS_Y);
 		stage.gameplayLayer.addChild(sensor);
 		sensors.push(sensor);
 		
-		createBallSensor(Ball.BALL_CANDY_ID, 670, 600, 0x4D90FF, "bonus:x", onNormalAreaHit);
-		createBallSensor(Ball.BALL_8_ID, 1270, 400, 0xBB4FFF, "bonus:x", onNormalAreaHit);
-		createBallSensor(Ball.BALL_POKEMON_ID, 1670, 200, 0xFF7A22, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_CANDY_ID, 670, 605, 0x4D90FF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_8_ID, 1270, 405, 0xBB4FFF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_POKEMON_ID, 1670, 205, 0xFF7A22, "bonus:x", onNormalAreaHit);
 		
 		crown = Sprite.fromImage("assets/textures/sprites/crown.png", false);
-		sensor = new BonusSensor(null, 70, 100, 0xFF2740, crown, null, onCrownHit);
+		sensor = new BonusSensor(null, 72, 100, 0xFF2740, crown, null, onCrownHit);
 		sensor.position.set(1870, POS_Y);
 		stage.gameplayLayer.addChild(sensor);
 		sensors.push(sensor);

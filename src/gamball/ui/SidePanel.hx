@@ -8,6 +8,7 @@ import pixi.core.graphics.Graphics;
 class SidePanel extends GameObject
 {
 	public var currencyPanel(default, null):CurrencyPanel;
+	public var timeWarpPanel(default, null):TimeWarpPanel;
 	public var panelWidth(default, null):Float;
 	
 	private var stage:GameStage;
@@ -31,6 +32,10 @@ class SidePanel extends GameObject
 		currencyPanel = new CurrencyPanel(stage);
 		currencyPanel.position.set(Math.round(panelWidth * 0.5), 90);
 		addChildWithUpdate(currencyPanel);
+		
+		timeWarpPanel = new TimeWarpPanel();
+		timeWarpPanel.position.set(Math.round(panelWidth * 0.5), GamBall.screenHeight - 100);
+		addChildWithUpdate(timeWarpPanel);
 		
 		var btnY = Math.round(GamBall.screenHeight * 0.45);
 		createBallButton(Ball.BALL_CANDY_ID, btnY);

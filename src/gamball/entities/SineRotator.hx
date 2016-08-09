@@ -1,6 +1,7 @@
 package gamball.entities;
 import engine.entities.PhysicObject;
 import engine.system.Time;
+import engine.utils.MathR;
 import nape.geom.Vec2;
 import nape.phys.BodyType;
 import nape.phys.Material;
@@ -12,6 +13,7 @@ class SineRotator extends PhysicObject
 	private var bodyWidth:Float;
 	private var bodyHeight:Float;
 	private var angularVel:Float;
+	private var fixedTimer:Float = 0;
 	
 	public function new(x:Float, y:Float, width:Float, height:Float, angularVel:Float = 0) 
 	{
@@ -48,6 +50,8 @@ class SineRotator extends PhysicObject
 	override public function fixedUpdate():Void 
 	{
 		super.fixedUpdate();
-		body.angularVel = Math.sin(Time.time * Time.timeScale) * angularVel;
+		fixedTimer += Time.fixedDT;
+		if (fixedTimer > MathR.PI_2) fixedTimer -= MathR.PI_2;
+		body.angularVel = Math.sin(fixedTimer) * angularVel;
 	}
 }

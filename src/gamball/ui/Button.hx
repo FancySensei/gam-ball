@@ -10,11 +10,11 @@ class Button extends GameObject
 {
 	public var isCooldown(default, null):Bool = false;
 	public var config(default, null):ButtonConfig;
+	public var surface(default, null):Graphics;
 	
 	private var callback:Void->Void;
 	
 	private var base:Graphics;
-	private var surface:Graphics;
 	private var sfx:WaudSound;
 	
 	public function new(config:ButtonConfig, callback:Void->Void)
