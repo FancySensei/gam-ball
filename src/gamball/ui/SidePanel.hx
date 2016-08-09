@@ -29,14 +29,14 @@ class SidePanel extends GameObject
 		addChild(bg);
 		
 		currencyPanel = new CurrencyPanel(stage);
-		currencyPanel.position.set(Math.round(panelWidth * 0.5), 80);
+		currencyPanel.position.set(Math.round(panelWidth * 0.5), 90);
 		addChildWithUpdate(currencyPanel);
 		
-		var btnY = Math.round(GamBall.screenHeight * 0.5);
+		var btnY = Math.round(GamBall.screenHeight * 0.45);
 		createBallButton(Ball.BALL_CANDY_ID, btnY);
-		btnY += 115;
+		btnY += 120;
 		createBallButton(Ball.BALL_8_ID, btnY);
-		btnY += 115;
+		btnY += 120;
 		createBallButton(Ball.BALL_POKEMON_ID, btnY);
 	}
 	
