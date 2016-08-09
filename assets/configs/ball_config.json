@@ -1,17 +1,14 @@
-[
-	{
-		"id": "candy",
+{
+	"candy": {
 		"texture": "ball_candy.png",
 		"cost": 3
 	},
-	{
-		"id": "8",
+	"8": {
 		"texture": "ball_8.png",
 		"cost": 8
 	},
-	{
-		"id": "pokemon",
+	"pokemon": {
 		"texture": "ball_pokemon.png",
 		"cost": 25
 	}
-]
+}

@@ -32,11 +32,12 @@ class SidePanel extends GameObject
 		addChildWithUpdate(currencyPanel);
 		
 		var btnY = Math.round(GamBall.screenHeight * 0.5);
-		for (ballConfig in stage.gameConfig.ballConfigs)
+		for (ballID in stage.gameConfig.ballConfigs.keys())
 		{
+			var ballConfig = stage.gameConfig.ballConfigs.get(ballID);
 			var ballBtn = new BallButton(ballConfig.texture, ballConfig.cost, function():Void
 			{
-				stage.generateBall(ballConfig);
+				stage.generateBall(ballID, ballConfig);
 			});
 			ballBtn.position.set(currencyPanel.x, btnY);
 			btnY += 115;

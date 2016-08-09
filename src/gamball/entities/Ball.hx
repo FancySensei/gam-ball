@@ -12,11 +12,14 @@ class Ball extends PhysicObject
 	static public inline var PATH:String = "assets/textures/sprites/";
 	static public inline var BALL_RADIUS:Int = 40;
 	
+	public var id(default, null):String;
+	
 	private var sprite:Sprite;
 	
-	public function new(x:Float, y:Float, config:BallConfig)
+	public function new(x:Float, y:Float, id:String, config:BallConfig)
 	{
 		super(BodyType.DYNAMIC, Vec2.get(x, y));
+		this.id = id;
 		
 		body.shapes.add(new Circle(BALL_RADIUS, null, Material.wood()));
 		body.allowRotation = true;

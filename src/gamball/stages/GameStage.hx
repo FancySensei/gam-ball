@@ -7,6 +7,7 @@ import engine.utils.MathR;
 import gamball.configs.GameConfig;
 import gamball.entities.Ball;
 import gamball.entities.Ball.BallConfig;
+import gamball.entities.BonusArea;
 import gamball.levels.Level;
 import gamball.ui.SidePanel;
 import pixi.core.math.Point;
@@ -19,8 +20,8 @@ class GameStage extends Stage
 	public var gameConfig(default, null):GameConfig;
 	public var level(default, null):Level;
 	public var sidePanel(default, null):SidePanel;
-	
-	private var balls:Array<Ball> = [];
+	public var balls(default, null):Array<Ball> = [];
+	public var bonusArea(default, null):BonusArea;
 	
 	private function new(gameConfig:GameConfig)
 	{
@@ -30,6 +31,8 @@ class GameStage extends Stage
 		physics.worldSpace.gravity.y = Physics.meterToPixel(15.0);
 		
 		addChildWithUpdate(level = new Level(this));
+		
+		addChildWithUpdate(bonusArea = new BonusArea(this));
 		
 		uiLayer.addChildWithUpdate(sidePanel = new SidePanel(this));
 		gameplayLayer.addChild(physics.debugDraw);
@@ -46,12 +49,12 @@ class GameStage extends Stage
 		});
 	}
 	
-	public function generateBall(ballConfig:BallConfig):Void
+	public function generateBall(ballID:String, ballConfig:BallConfig):Void
 	{
 		if (currency >= ballConfig.cost)
 		{
 			currency -= ballConfig.cost;
-			var ball = new Ball(MathR.randomFloat( -50, 50), -1200, ballConfig);
+			var ball = new Ball(MathR.randomFloat( -50, 50), -1200, ballID, ballConfig);
 			balls.push(ball);
 			gameplayLayer.addChildWithUpdate(ball);
 		}
