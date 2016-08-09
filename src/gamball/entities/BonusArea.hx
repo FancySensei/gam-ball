@@ -7,8 +7,9 @@ import pixi.core.sprites.Sprite;
 
 class BonusArea implements IGameObject
 {
-	static private inline var SPEED:Float = 150;
+	static private inline var SPEED:Float = 200;
 	static private inline var BOUNDS_LEFT:Float = -600;
+	static private inline var POS_Y:Float = -100;
 	static private inline var TOTAL_WIDTH:Float = (600 + 400 + 200 + 70) * 2;
 	
 	private var stage:GameStage;
@@ -18,55 +19,46 @@ class BonusArea implements IGameObject
 	{
 		this.stage = stage;
 		
-		createBallSensor(Ball.BALL_CANDY_ID, -600, 600, 0x4D90FF, "bonus:x2", onCandyHit);
-		createBallSensor(Ball.BALL_8_ID, 0, 400, 0xBB4FFF, "bonus:x5", onEightHit);
-		createBallSensor(Ball.BALL_POKEMON_ID, 400, 200, 0xFF7A22, "bonus:x10", onPokemonHit);
+		createBallSensor(Ball.BALL_CANDY_ID, -600, 600, 0x4D90FF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_8_ID, 0, 400, 0xBB4FFF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_POKEMON_ID, 400, 200, 0xFF7A22, "bonus:x", onNormalAreaHit);
 		
 		var crown = Sprite.fromImage("assets/textures/sprites/crown.png", false);
 		var sensor = new BonusSensor(null, 70, 100, 0xFF2740, crown, null, onCrownHit);
-		sensor.position.set(600, -200);
+		sensor.position.set(600, POS_Y);
 		stage.gameplayLayer.addChild(sensor);
 		sensors.push(sensor);
 		
-		createBallSensor(Ball.BALL_POKEMON_ID, 670, 200, 0xFF7A22, "bonus:x10", onPokemonHit);
-		createBallSensor(Ball.BALL_8_ID, 870, 400, 0xBB4FFF, "bonus:x5", onEightHit);
-		createBallSensor(Ball.BALL_CANDY_ID, 1270, 600, 0x4D90FF, "bonus:x2", onCandyHit);
+		createBallSensor(Ball.BALL_CANDY_ID, 670, 600, 0x4D90FF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_8_ID, 1270, 400, 0xBB4FFF, "bonus:x", onNormalAreaHit);
+		createBallSensor(Ball.BALL_POKEMON_ID, 1670, 200, 0xFF7A22, "bonus:x", onNormalAreaHit);
 		
 		crown = Sprite.fromImage("assets/textures/sprites/crown.png", false);
 		sensor = new BonusSensor(null, 70, 100, 0xFF2740, crown, null, onCrownHit);
-		sensor.position.set(1870, -200);
+		sensor.position.set(1870, POS_Y);
 		stage.gameplayLayer.addChild(sensor);
 		sensors.push(sensor);
 	}
 	
-	private function createBallSensor(id:String, x:Float, width:Float, colour:Int, text:String, callback:Void->Void):Void
+	private function createBallSensor(id:String, x:Float, width:Float, colour:Int, text:String, callback:Ball->Void):Void
 	{
-		var spr = Sprite.fromImage(Ball.PATH + stage.gameConfig.ballConfigs.get(id).texture, false);
+		var config = stage.gameConfig.ballConfigs.get(id);
+		var spr = Sprite.fromImage(Ball.PATH + config.texture, false);
 		spr.scale.set(48 / 128);
-		var sensor = new BonusSensor(id, width, 100, colour, spr, text, callback);
-		sensor.position.set(x, -200);
+		var sensor = new BonusSensor(id, width, 100, colour, spr, text + Std.string(config.bonus), callback);
+		sensor.position.set(x, POS_Y);
 		stage.gameplayLayer.addChild(sensor);
 		sensors.push(sensor);
 	}
 	
-	private function onCandyHit():Void
+	private function onNormalAreaHit(ball:Ball):Void
 	{
-		trace("candy!");
+		stage.rewardCurrency(ball.config.cost, ball.config.bonus);
 	}
 	
-	private function onEightHit():Void
+	private function onCrownHit(ball:Ball):Void
 	{
-		trace("888!");
-	}
-	
-	private function onPokemonHit():Void
-	{
-		trace("pokemon!");
-	}
-	
-	private function onCrownHit():Void
-	{
-		trace("crown!");
+		stage.rewardCurrency(ball.config.cost, 30);
 	}
 	
 	public function fixedUpdate():Void 

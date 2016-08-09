@@ -60,6 +60,11 @@ class GameStage extends Stage
 		}
 	}
 	
+	public function rewardCurrency(cost:Int, bonus:Int):Void
+	{
+		currency += cost * bonus;
+	}
+	
 	override public function update():Void 
 	{
 		super.update();

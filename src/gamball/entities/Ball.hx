@@ -16,7 +16,8 @@ class Ball extends PhysicObject
 	static public inline var BALL_POKEMON_ID:String = "pokemon";
 	
 	public var id(default, null):String;
-	public var hasScored(default, default):Bool = false;
+	public var config(default, null):BallConfig;
+	public var isDone(default, default):Bool = false;
 	
 	private var sprite:Sprite;
 	
@@ -24,6 +25,7 @@ class Ball extends PhysicObject
 	{
 		super(BodyType.DYNAMIC, Vec2.get(x, y));
 		this.id = id;
+		this.config = config;
 		
 		body.shapes.add(new Circle(BALL_RADIUS, null, Material.wood()));
 		body.allowRotation = true;
@@ -57,4 +59,5 @@ typedef BallConfig =
 	var id:String;
 	var texture:String;
 	var cost:Int;
+	var bonus:Int;
 }

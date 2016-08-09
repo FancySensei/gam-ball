@@ -52,16 +52,16 @@ class Level implements IGameObject
 		stage.gameplayLayer.addChildAt(bg, 0);
 		
 		// bottom triangles
-		var tri = new BalancedTriangle(-200, -200, 150, 80);
+		var tri = new BalancedTriangle(-200, -100, 150, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 		
-		tri = new BalancedTriangle(200, -200, 150, 80);
+		tri = new BalancedTriangle(200, -100, 150, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 		
-		tri = new BalancedTriangle(-600, -200, 150, 80);
+		tri = new BalancedTriangle(-600, -100, 150, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 		
-		tri = new BalancedTriangle(600, -200, 150, 80);
+		tri = new BalancedTriangle(600, -100, 150, 80);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 		
 		// Bells

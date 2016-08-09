@@ -14,10 +14,10 @@ class BonusSensor extends Container
 	public var sensorHeight(default, null):Float;
 	
 	private var ballID:String = null;
-	private var onBallHit:Void->Void;
+	private var onBallHit:Ball->Void;
 	private var boarder:Graphics;
 	
-	public function new(ballID:String, width:Float, height:Float, colour:Int, icon:Sprite, text:String, onBallHit:Void->Void)
+	public function new(ballID:String, width:Float, height:Float, colour:Int, icon:Sprite, text:String, onBallHit:Ball->Void)
 	{
 		super();
 		this.ballID = ballID;
@@ -52,17 +52,21 @@ class BonusSensor extends Container
 	
 	public function hitTest(ball:Ball):Void
 	{
-		if (!ball.hasScored
-			&& (ballID == null || ball.id == ballID)
+		// Once the ball in the area, it's done
+		if (!ball.isDone
 			&& MathR.isBetween(ball.y, y, y + sensorHeight)
 			&& MathR.isBetween(ball.x, x, x + sensorWidth))
 		{
-			ball.hasScored = true;
-			onBallHit();
-			boarder.alpha = 1.0;
-			Actuate.tween(boarder, 0.3, {alpha: 0}).ease(Linear.easeNone);
-			boarder.scale.set(0.9, 0.9);
-			Actuate.tween(boarder.scale, 0.3, {x: 1.0, y: 1.05}).ease(Expo.easeOut);
+			ball.isDone = true;
+			// If it's the right ball (or crown), reward the player
+			if (ballID == null || ball.id == ballID)
+			{
+				onBallHit(ball);
+				boarder.alpha = 1.0;
+				Actuate.tween(boarder, 0.3, {alpha: 0}).ease(Linear.easeNone);
+				boarder.scale.set(0.9, 0.9);
+				Actuate.tween(boarder.scale, 0.3, {x: 1.0, y: 1.05}).ease(Expo.easeOut);
+			}
 		}
 	}
 }

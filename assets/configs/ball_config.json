@@ -1,14 +1,17 @@
 {
 	"candy": {
 		"texture": "ball_candy.png",
-		"cost": 3
+		"cost": 3,
+		"bonus": 2
 	},
 	"8": {
 		"texture": "ball_8.png",
-		"cost": 8
+		"cost": 8,
+		"bonus": 3
 	},
 	"pokemon": {
 		"texture": "ball_pokemon.png",
-		"cost": 25
+		"cost": 25,
+		"bonus": 10
 	}
 }
