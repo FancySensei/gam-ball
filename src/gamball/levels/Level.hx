@@ -43,18 +43,18 @@ class Level implements IGameObject
 	private function buildLevel()
 	{
 		// left
-		var rect = new StripedRect(-600, -1000, 2000, 100, MathR.PI_HALF);
+		var rect = new StripedRect(-600, -1000, 2000, 1000, MathR.PI_HALF);
 		stage.gameplayLayer.addChildWithUpdate(rect);
 		
 		// right
-		rect = new StripedRect(600, -1000, 2000, 100, -MathR.PI_HALF);
+		rect = new StripedRect(600, -1000, 2000, 1000, -MathR.PI_HALF);
 		stage.gameplayLayer.addChildWithUpdate(rect);
 		
 		// right
 		rect = new StripedRect(0, -200, 1000, 100, 0);
 		stage.gameplayLayer.addChildWithUpdate(rect);
 		
-		var tri = new BalancedTriangle(0, -500);
+		var tri = new BalancedTriangle(0, -500, 300, 100, -MathR.PI_HALF);
 		stage.gameplayLayer.addChildWithUpdate(tri);
 	}
 	

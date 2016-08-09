@@ -13,6 +13,7 @@ class GamBall
 	static public var screenWidth(default, null):Int = 1280;
 	static public var screenHeight(default, null):Int = 720;
 	static public var targetFPS(default, null):Int = 60;
+	static public var antialias(default, null):Bool = false;
 	
 	static private var _instance(default, null):GamBall;
 	static public var instance(get, never):GamBall;
@@ -36,7 +37,7 @@ class GamBall
 			autoResize: false,
 			resolution: 1.0,
 			clearBeforeRender: true,
-			antialias: false,
+			antialias: antialias,
 			forceFXAA: false,
 			preserveDrawingBuffer: false
 		}
@@ -44,11 +45,31 @@ class GamBall
 		engine = Engine.instance.init(screenWidth, screenHeight, options, RendererType.AUTO);
 	}
 	
-	static public function run(?width:Int, ?height:Int, ?fps:Int):Void
+	static public function run(?width:Int, ?height:Int, ?quality:String):Void
 	{
 		if (width != null) screenWidth = width;
 		if (height != null) screenHeight = height;
-		if (fps != null) targetFPS = fps;
+		if (quality != null)
+		{
+			switch (quality)
+			{
+				case "high":
+				{
+					targetFPS = 60;
+					antialias = true;
+				}
+				case "low":
+				{
+					targetFPS = 30;
+					antialias = false;
+				}
+				default:
+				{
+					targetFPS = 60;
+					antialias = false;
+				}
+			}
+		}
 		instance.start();
 	}
 	

@@ -12,13 +12,12 @@ class BalancedTriangle extends PhysicObject
 {
 	private var polyData:Array<Float>;
 	
-	public function new(x:Float, y:Float, rotation:Float = 0)
+	public function new(x:Float, y:Float, xRad:Float, yRad:Float, rotation:Float = 0)
 	{
 		super(BodyType.STATIC, Vec2.get(x, y));
 		
-		var polys = Polygon.regular(30, 50, 3, -MathR.PI_HALF);
+		var polys = Polygon.regular(xRad, yRad, 3, rotation);
 		body.shapes.add(new Polygon(polys, Material.steel()));
-		body.rotation = rotation;
 		body.space = physics.worldSpace;
 		
 		polyData = Utils.ConvertVec2Poly(polys);

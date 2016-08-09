@@ -18,7 +18,8 @@
 	<script>
 		function handleLoaded()
 		{
-			GamBall.run(1024, 768, 60);
+			var quality = location.search.split('quality=')[1] ? location.search.split('quality=')[1] : "medium";
+			GamBall.run(1024, 768, quality);
 		}
 	</script>
 </body>
