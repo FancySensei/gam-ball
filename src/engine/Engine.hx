@@ -122,10 +122,17 @@ class Engine
 		}
 	}
 	
-	public function addStage(stage:Stage):Stage
+	public function addStage(stage:Stage, ?at:Int):Stage
 	{
 		rootStages.push(stage);
-		this.rootContainer.addChild(stage);
+		if (at != null)
+		{
+			rootContainer.addChildAt(stage, at);
+		}
+		else
+		{
+			rootContainer.addChild(stage);
+		}
 		return stage;
 	}
 	

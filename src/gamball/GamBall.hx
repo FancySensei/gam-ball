@@ -23,7 +23,6 @@ class GamBall
 	}
 
 	public var engine(default, null):Engine;
-	public var currentStage(default, null):Stage;
 	
 	private function new()
 	{
@@ -76,14 +75,5 @@ class GamBall
 	public function start():Void
 	{
 		engine.start(new PreloadStage(), targetFPS);
-	}
-	
-	public function changeStage(stage:Stage):Void
-	{
-		if (currentStage != null)
-		{
-			engine.removeStage(currentStage);
-		}
-		engine.addStage(currentStage = stage);
 	}
 }

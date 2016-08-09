@@ -6,14 +6,23 @@ import motion.Actuate;
 import motion.easing.Back;
 import motion.easing.Expo;
 import motion.easing.Linear;
+import pixi.core.graphics.Graphics;
 
 class PreloadStage extends Stage
 {
 	private var loadingText:FancyBitmapText;
+	private var bg:Graphics;
 	
 	public function new()
 	{
 		super();
+		
+		bg = new Graphics();
+		bg.beginFill(0x282828);
+		// with paddings
+		bg.drawRect( -1, -1, GamBall.screenWidth + 2, GamBall.screenHeight + 2);
+		bg.endFill();
+		addChild(bg);
 		
 		// Load the fonts first
 		Fonts.load(function():Void
@@ -35,9 +44,11 @@ class PreloadStage extends Stage
 	{
 		GameStage.load(function(gameStage:GameStage):Void
 		{
+			engine.addStage(gameStage, 0);
 			onLoadComplete(function():Void
 			{
-				GamBall.instance.changeStage(gameStage);
+				engine.removeStage(this);
+				destroy();
 			});
 		});
 	}
@@ -45,6 +56,7 @@ class PreloadStage extends Stage
 	private function onLoadComplete(onAnimationComplete:Void->Void):Void
 	{
 		Actuate.tween(loadingText, 0.5, {alpha: 0}).ease(Linear.easeNone);
+		Actuate.tween(bg, 0.5, {alpha: 0}).ease(Linear.easeNone);
 		Actuate.tween(loadingText.scale, 0.8, {x: 2.5, y: 2.5}).ease(Expo.easeOut).onComplete(onAnimationComplete);
 	}
 	
